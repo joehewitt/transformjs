@@ -25,15 +25,15 @@ Here is an example that replaces all numbers with the value 2.
     var transformjs = require('transformjs');
     var ast = transformjs.transform('if (1) { a() } else { b() }', [
         function(node, next) {
-            if (node.type == 'number') {
-                return {type: number, value: 2};
+            if (node.type == 'num') {
+                return {type: 'num', value: 2};
             } else {
                 return next(node);
             }
         },
     ]);
 
-    var js = transformjs.generate(ast);
+    console.log(transformjs.generate(ast));
 
 
 Traversal occurs from top to bottom.  Filter functions are called in order for each node.
