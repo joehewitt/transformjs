@@ -92,6 +92,42 @@ vows.describe('basics').addBatch({
         
         'syntax error': function() {
             
-        }   
+        },
+
+        'switch': function() {
+            var source = "switch(a) {case b: 99; break; case c: 88; break; default: 77}";
+
+            var ast = transformjs.transform(source, [
+                function(node, next) {
+                    return next();
+                }
+            ]);
+            var output = transformjs.generate(ast);
+            assert.equal(output, 'switch(a){case b:99;break;case c:88;break;default:77}');
+        },
+
+        'try': function() {
+            var source = "try {a} catch (exc) {b} finally {c}";
+
+            var ast = transformjs.transform(source, [
+                function(node, next) {
+                    return next();
+                }
+            ]);
+            var output = transformjs.generate(ast);
+            assert.equal(output, 'try{a}catch(exc){b}finally{c}');
+        },
+
+        // 'stuff': function() {
+        //     var source = "true";
+
+        //     var ast = transformjs.transform(source, [
+        //         function(node, next) {
+        //             return next();
+        //         }
+        //     ]);
+        //     var output = transformjs.generate(ast);
+        //     assert.equal(output, ');
+        // }
     }
 }).export(module);
