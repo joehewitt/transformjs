@@ -106,11 +106,12 @@ vows.describe('basics').addBatch({
             assert.equal(output, 'switch(a){case b:99;break;case c:88;break;default:77}');
         },
 
-        'try': function() {
-            var source = "try {a} catch (exc) {b} finally {c}";
+        'object': function() {
+            var source = "var a = {foo: function() {42}}";
 
             var ast = transformjs.transform(source, [
                 function(node, next) {
+                    console.log(require('util').inspect(node, null, 200));
                     return next();
                 }
             ]);
