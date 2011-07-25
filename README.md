@@ -7,15 +7,10 @@ TransformJS is based on the [Uglify](https://github.com/mishoo/UglifyJS) JavaScr
 
 TransformJS can be used for static analysis to remove dead code or for searching for patterns in the code. If you're using hand-rolled regular expressions for transforming JavaScript, TransformJS offers you a safer option by parsing the code according to the language grammar and outputting valid code.
 
-Status
-------------
-
-Work-in-progress and intended only for myself for now.
-
 Installation
 ------------
 
-    $ npm install transformjs (someday! not in registry yet)
+    $ npm install transformjs
 
 Usage
 ------------
