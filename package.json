@@ -11,7 +11,7 @@
   "author": "Joe Hewitt <joe@joehewitt.com>",
   "contributors": [],
   "dependencies": {     
-    "dandy": "https://github.com/joehewitt/dandy/tarball/master",
+    "dandy": "",
     "uglify-js": ""
   },
   "engines": { "node": ">=0.4.0" },
