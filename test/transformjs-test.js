@@ -91,7 +91,16 @@ vows.describe('basics').addBatch({
         },
         
         'syntax error': function() {
-            
+            var source = "var 1a";
+
+            try {
+                transformjs.transform(source, []);
+                assert.fail();
+            } catch (exc) {
+                assert.equal(exc.line, 0);
+                assert.equal(exc.col, 4);
+                assert.equal(exc.message, 'Invalid syntax: 1a');
+            }
         },
 
         'switch': function() {
