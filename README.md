@@ -23,7 +23,7 @@ Here is an example that replaces all numbers with the value 2.
             if (node.type == 'num') {
                 return {type: 'num', value: 2};
             } else {
-                return next(node);
+                return next();
             }
         },
     ]);
