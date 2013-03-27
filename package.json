@@ -1,20 +1,22 @@
 {
   "name": "transformjs",
   "description": "Transforms JavaScript code.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "http://github.com/joehewitt/transformjs",
   "repository": {
-      "type": "git",
-      "url" : "http://github.com/joehewitt/transformjs.git"
+    "type": "git",
+    "url": "http://github.com/joehewitt/transformjs.git"
   },
   "keywords": [],
   "author": "Joe Hewitt <joe@joehewitt.com>",
   "contributors": [],
-  "dependencies": {     
+  "dependencies": {
     "dandy": "",
     "uglify-js": "1.2.6"
   },
-  "engines": { "node": ">=0.4.0" },
+  "engines": {
+    "node": ">=0.4.0"
+  },
   "main": "./lib/transformjs",
   "directories": {}
 }
