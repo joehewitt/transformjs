@@ -125,6 +125,42 @@ vows.describe('basics').addBatch({
             assert.equal(output, 'var a={foo:function(){42}}');
         },
 
+        'try catch finally': function() {
+            var source = "try{ foo() } catch(e) {} finally {}";
+
+            var ast = transformjs.transform(source, [
+                function(node, next) {
+                    return next();
+                }
+            ]);
+            var output = transformjs.generate(ast);
+            assert.equal(output, 'try{foo()}catch(e){}finally{}');
+        },
+
+        'try finally': function() {
+            var source = "try{ foo() } finally {}";
+
+            var ast = transformjs.transform(source, [
+                function(node, next) {
+                    return next();
+                }
+            ]);
+            var output = transformjs.generate(ast);
+            assert.equal(output, 'try{foo()}finally{}');
+        },
+
+        'try catch': function() {
+            var source = "try{ foo() } catch(e) {}";
+
+            var ast = transformjs.transform(source, [
+                function(node, next) {
+                    return next();
+                }
+            ]);
+            var output = transformjs.generate(ast);
+            assert.equal(output, 'try{foo()}catch(e){}');
+        },
+
         // 'stuff': function() {
         //     var source = "true";
 
