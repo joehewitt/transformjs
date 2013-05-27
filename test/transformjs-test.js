@@ -2,9 +2,7 @@ var path = require('path'),
     assert = require('assert'),
     vows = require('vows');
 
-require.paths.unshift(path.join(__dirname, '..', 'lib'));
-
-var transformjs = require('transformjs');
+var transformjs = require('../lib/transformjs');
 
 // *************************************************************************************************
 
@@ -97,8 +95,8 @@ vows.describe('basics').addBatch({
                 transformjs.transform(source, []);
                 assert.fail();
             } catch (exc) {
-                assert.equal(exc.line, 0);
-                assert.equal(exc.col, 4);
+                assert.equal(exc.line, 1);
+                assert.equal(exc.col, 5);
                 assert.equal(exc.message, 'Invalid syntax: 1a');
             }
         },
@@ -120,12 +118,47 @@ vows.describe('basics').addBatch({
 
             var ast = transformjs.transform(source, [
                 function(node, next) {
-                    console.log(require('util').inspect(node, null, 200));
                     return next();
                 }
             ]);
             var output = transformjs.generate(ast);
-            assert.equal(output, 'try{a}catch(exc){b}finally{c}');
+            assert.equal(output, 'var a={foo:function(){42}}');
+        },
+
+        'try catch finally': function() {
+            var source = "try{ foo() } catch(e) {} finally {}";
+
+            var ast = transformjs.transform(source, [
+                function(node, next) {
+                    return next();
+                }
+            ]);
+            var output = transformjs.generate(ast);
+            assert.equal(output, 'try{foo()}catch(e){}finally{}');
+        },
+
+        'try finally': function() {
+            var source = "try{ foo() } finally {}";
+
+            var ast = transformjs.transform(source, [
+                function(node, next) {
+                    return next();
+                }
+            ]);
+            var output = transformjs.generate(ast);
+            assert.equal(output, 'try{foo()}finally{}');
+        },
+
+        'try catch': function() {
+            var source = "try{ foo() } catch(e) {}";
+
+            var ast = transformjs.transform(source, [
+                function(node, next) {
+                    return next();
+                }
+            ]);
+            var output = transformjs.generate(ast);
+            assert.equal(output, 'try{foo()}catch(e){}');
         },
 
         // 'stuff': function() {
