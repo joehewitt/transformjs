@@ -1,7 +1,7 @@
 {
   "name": "transformjs",
   "description": "Transforms JavaScript code.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "http://github.com/joehewitt/transformjs",
   "repository": {
     "type": "git",
